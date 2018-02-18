@@ -1,0 +1,22 @@
+{
+  "name": "callbag-proxy",
+  "version": "1.0.0",
+  "description": "Callbag proxy for solving circular dependencies",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krawaller/callbag-proxy.git"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test.js"
+  },
+  "author": "David Waller",
+  "license": "MIT",
+  "keywords": [
+    "callbag"
+  ],
+  "devDependencies": {
+    "callbag-mock": "^1.0.0",
+    "tape": "^4.8.0"
+  }
+}
