@@ -2,7 +2,7 @@
 
 [Callbag](https://github.com/callbag/callbag) proxy useful for solving circular dependencies between sources.
 
-```
+```js
 const proxy = makeProxy();
 
 // later
