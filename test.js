@@ -2,26 +2,22 @@ const test = require('tape');
 const makeMockCallbag = require('callbag-mock');
 const makeProxy = require('./index');
 
-test('it correctly proxies a source', tape => {
-  let history = [];
-  const reporter = (name,dir,t,d) => t !== 0 && history.push([name,dir,t,d]);
+test('it correctly proxies a source', t => {
 
-  const source = makeMockCallbag('source', true);
+  const source = makeMockCallbag(true);
   const proxy = makeProxy();
+  const sink = makeMockCallbag();
 
-  tape.throws(() => proxy(0, sink), 'we get error if we attach sink to unconnected proxy');
+  t.throws(() => proxy(0, sink), 'we get error if we attach sink to unconnected proxy');
 
   proxy.connect(source);
-
-  const sink = makeMockCallbag('sink', reporter);
-
   proxy(0, sink);
 
   source.emit(1, 'foo');
+  t.deepEqual(sink.getReceivedData(), ['foo'], 'sink gets data from source via proxy');
 
-  tape.deepEqual(history, [
-    ['sink', 'body', 1, 'foo'],
-  ], 'sink gets data from source via proxy');
+  sink.emit(2);
+  t.ok(!source.checkConnection(), 'proxy passed messages along upstream too');
 
-  tape.end();
+  t.end();
 });
