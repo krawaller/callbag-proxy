@@ -1,6 +1,6 @@
 const test = require('tape');
 const makeMockCallbag = require('callbag-mock');
-const makeProxy = require('./index');
+const makeProxy = require('.');
 
 test('it correctly proxies a source', t => {
 

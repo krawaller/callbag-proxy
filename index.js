@@ -9,4 +9,4 @@ function makeProxy(){
   return callbag;
 }
 
-module.exports = makeProxy;
+export default makeProxy;
